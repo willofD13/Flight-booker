@@ -5,6 +5,7 @@
 # Example:
 #
 require 'date'
+Flight.delete_all
 Airport.delete_all
 
      Airport.create!([{
@@ -25,25 +26,30 @@ Airport.delete_all
 
    p "created #{Airport.count} airports"
 
-  Flight.delete_all
+   now = Time.now
+   month = now + (60*60*24*30)
+   airport_codes = Airport.all.map {|a| a.code }
+   airport_pairs = airport_codes.repeated_permutation(2).to_a
+   hours = [1...12]
 
-  Flight.create!([{
-    start_datetime: DateTime.new(2023,12,30,16,00,00),
-    duration: "3,5h",
-    departure_airport_id: 31,
-    arrival_airport_id: 32
-  },
-  {
-    start_datetime: DateTime.new(2024,2,23,12,00,00),
-    duration: "12,5h",
-    departure_airport_id: 33,
-    arrival_airport_id: 34
-  },
-  {
-    start_datetime: DateTime.new(2024,1,30,13,00,00),
-    duration: "5h 5m",
-    departure_airport_id: 35,
-    arrival_airport_id: 34
-  }])
+   def airport_finder(airports,time1,time2)
+    airports.each do |a|
+      a1 = Airport.find_by(code: a[0])
+      a2 = Airport.find_by(code: a[1])
 
+      flight_creator(a1,a2,time1,time2)
+    end
+   end
+  
+   def flight_creator(departure_airport,arrival_airport,time1,time2)
+      Flight.create!({
+      start_datetime: Time.at((time2.to_f - time1.to_f)*rand + time1.to_f),
+      duration: "#{((1..24).to_a).sample} hours",
+      departure_airport_id: departure_airport.id,
+      arrival_airport_id: arrival_airport.id
+      })
+   end
+
+   airport_finder(airport_pairs,now,month)
+   
 p "created #{Flight.count} flights"
