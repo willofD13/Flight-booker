@@ -9,19 +9,19 @@ Flight.delete_all
 Airport.delete_all
 
      Airport.create!([{
-      code: "[AHN]"
+      code: "AHN"
      },
     {
-      code: "[GGW]"
+      code: "GGW"
     },
     {
-      code: "[IND]"
+      code: "IND"
     },
     {
-      code: "[SFO]"
+      code: "SFO"
     },
     {
-      code: "[NYC]"
+      code: "NYC"
     }])
 
    p "created #{Airport.count} airports"
