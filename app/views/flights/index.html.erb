@@ -1,0 +1,7 @@
+<h1> Flights </h1>
+
+<%= form_with url: "/flights", method: :get do |f|%>
+    <%= f.label :query, "Search for:"%>
+    <%= f.text_field :query %>
+    <%= f.submit "Search" %>
+<% end %>
