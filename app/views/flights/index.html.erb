@@ -1,4 +1,12 @@
 <h1> Flights </h1>
+<% @flights.each do |f|%>
+<ul>
+    <li><%= f.start_datetime %></li>
+    <li><%= f.duration %></li>
+    <li><%= f.departure_airport.code %></li>
+    <li><%= f.arrival_airport.code %></li>
+</ul>
+<% end %>
 
 <%= form_with url: "/flights", method: :get do |f|%>
     <%= f.select :departure_airport_id, @airport_options %>
