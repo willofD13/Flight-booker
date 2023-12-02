@@ -53,12 +53,12 @@ Airport.delete_all
       })
    end
 
-   def morning_time(time)
-    Faker::Time.between_dates(from: time, to: time, period: :morning)
+   def morning_time(day)
+    Faker::Time.between_dates(from: day, to: day, period: :morning)
    end
 
-   def afternoon_time(time)
-    Faker::Time.between_dates(from: time, to: time, period: :afternoon)
+   def afternoon_time(day)
+    Faker::Time.between_dates(from: day, to: day, period: :afternoon)
    end
 
    (today..month).each do |d|
