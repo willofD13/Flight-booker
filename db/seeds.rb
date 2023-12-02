@@ -30,7 +30,6 @@ Airport.delete_all
    month = now + (60*60*24*30)
    airport_codes = Airport.all.map {|a| a.code }
    airport_pairs = airport_codes.permutation(2).to_a
-   hours = [1...12]
 
    def airport_finder(airports,time1,time2)
     airports.each do |a|
