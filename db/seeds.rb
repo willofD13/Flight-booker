@@ -23,47 +23,38 @@ Airport.delete_all
     {
       code: "NYC"
     }])
+    p "created #{Airport.count} airports"
 
-   p "created #{Airport.count} airports"
+   def flight_creator
+    today = Date.today
+    month = today + 20
+    now = Time.now
+    month = now + (60*60*24*30)
+    airport_codes = Airport.all.map {|a| a.code }
+    airport_pairs = airport_codes.permutation(2).to_a
 
-   today = Date.today
-   month = today + 30
-   airport_codes = Airport.all.map {|a| a.code }
-   airport_pairs = airport_codes.permutation(2).to_a
+    def airport_finder(airports,time1,time2)
+      airports.each do |a|
+        a1 = Airport.find_by(code: a[0])
+        a2 = Airport.find_by(code: a[1])
 
-
-   def airport_finder(airports,day)
-    airports.each do |a|
-      a1 = Airport.find_by(code: a[0])
-      a2 = Airport.find_by(code: a[1])
-      morning = morning_time(day)
-      afternoon = afternoon_time(day)
-
-      flight_creator(a1,a2,morning)
-      flight_creator(a1,a2,afternoon)
+        flight_creator(a1,a2,time1,time2)
+      end
     end
-   end
-  
-   def flight_creator(departure_airport,departure_time)
-      Flight.create!({
-      start_datetime: departure_time,
-      duration: "#{((1..24).to_a).sample} hours",
-      departure_airport_id: departure_airport.id,
-      arrival_airport_id: arrival_airport.id
-      })
-   end
+    
+    def flight_creator(departure_airport,arrival_airport,date,time)
+        Flight.create!({
+        time: Time.at(time2.to_f - time1.to_f)*rand + time1.to_f,
+        date: , 
+        duration: "#{((1..24).to_a).sample} hours",
+        departure_airport_id: departure_airport.id,
+        arrival_airport_id: arrival_airport.id
+        })
+    end
+  end
 
-   def morning_time(day)
-    Faker::Time.between_dates(from: day, to: day, period: :morning)
+   (today..month).each do |day|
+      flight_creator
    end
-
-   def afternoon_time(day)
-    Faker::Time.between_dates(from: day, to: day, period: :afternoon)
-   end
-
-   (today..month).each do |d|
-    airport_finder(airport_pairs,d)
-   end
-
    
 p "created #{Flight.count} flights"
