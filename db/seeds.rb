@@ -26,10 +26,6 @@ Airport.delete_all
     p "created #{Airport.count} airports"
 
    def flight_creator
-    today = Date.today
-    month = today + 20
-    now = Time.now
-    month = now + (60*60*24*30)
     airport_codes = Airport.all.map {|a| a.code }
     airport_pairs = airport_codes.permutation(2).to_a
 
@@ -52,9 +48,12 @@ Airport.delete_all
         })
     end
   end
+  
+  first_day = Date.today
+  last_day = today + 20
 
-   (today..month).each do |day|
-      flight_creator
-   end
+  (first_day..last_day).each do |day|
+    flight_creator
+  end
    
 p "created #{Flight.count} flights"
