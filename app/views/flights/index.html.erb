@@ -2,9 +2,9 @@
 <% @flights.each do |f|%>
 <ul>
     <li><%= f.start_datetime %></li>
-    <li><%= f.duration %></li>
-    <li><%= f.departure_airport.code %></li>
-    <li><%= f.arrival_airport.code %></li>
+    <div><%= f.duration %></div>
+    <div><%= f.departure_airport.code %></div>
+    <div><%= f.arrival_airport.code %></div>
 </ul>
 <% end %>
 
