@@ -28,19 +28,22 @@ Airport.delete_all
    def flight_creator
     airport_codes = Airport.all.map {|a| a.code }
     airport_pairs = airport_codes.permutation(2).to_a
+    time1 = Time.now
+    time2 = time1 + (60*60*24*20)
 
     def airport_finder(airports,time1,time2)
       airports.each do |a|
         a1 = Airport.find_by(code: a[0])
         a2 = Airport.find_by(code: a[1])
+        
 
-        flight_creator(a1,a2,time1,time2)
+        flight_creator(a1,a2,date,time)
       end
     end
     
     def flight_creator(departure_airport,arrival_airport,date,time)
         Flight.create!({
-        time: Time.at(time2.to_f - time1.to_f)*rand + time1.to_f,
+        time: ,
         date: , 
         duration: "#{((1..24).to_a).sample} hours",
         departure_airport_id: departure_airport.id,
