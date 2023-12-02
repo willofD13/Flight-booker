@@ -5,8 +5,7 @@ class Flight < ApplicationRecord
 
     def self.search(param1,param2,param3)
         if param1
-            self.where(departure_airport_id: param1, arrival_airport_id: param2,start_datetime: param3)
-        else
+            self.where(departure_airport_id: param1, arrival_airport_id: param2,date: param3)
             Flight.all
         end
     end

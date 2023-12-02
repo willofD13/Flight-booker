@@ -35,7 +35,8 @@ Airport.delete_all
       airports.each do |a|
         a1 = Airport.find_by(code: a[0])
         a2 = Airport.find_by(code: a[1])
-        
+        time = Time.at(time2.to_f - time1.to_f)*rand + time1.to_f
+        date = time.to_date
 
         flight_creator(a1,a2,date,time)
       end
