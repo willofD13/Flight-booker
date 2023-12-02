@@ -1,7 +1,7 @@
 <h1> Flights </h1>
 <% @flights.each do |f|%>
 <ul>
-    <li><%= f.start_datetime %></li>
+    <li><%= f.start_datetime.strftime('%Y-%m-%d %H:%m') %></li>
     <div><%= f.duration %></div>
     <div><%= f.departure_airport.code %></div>
     <div><%= f.arrival_airport.code %></div>
