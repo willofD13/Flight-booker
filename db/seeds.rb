@@ -25,17 +25,15 @@ Airport.delete_all
     }])
     p "created #{Airport.count} airports"
 
-   def flight_creator
+   def flight_generator(time1,time2)
     airport_codes = Airport.all.map {|a| a.code }
     airport_pairs = airport_codes.permutation(2).to_a
-    time1 = Time.now
-    time2 = time1 + (60*60*24*20)
 
     def airport_finder(airports,time1,time2)
       airports.each do |a|
         a1 = Airport.find_by(code: a[0])
         a2 = Airport.find_by(code: a[1])
-        time = Time.at(time2.to_f - time1.to_f)*rand + time1.to_f
+        time = Time.at((time2.to_f - time1.to_f)*rand + time1.to_f)
         date = time.to_date
 
         flight_creator(a1,a2,date,time)
@@ -44,20 +42,24 @@ Airport.delete_all
     
     def flight_creator(departure_airport,arrival_airport,date,time)
         Flight.create!({
-        time: ,
-        date: , 
+        time: time,
+        date: date, 
         duration: "#{((1..24).to_a).sample} hours",
         departure_airport_id: departure_airport.id,
         arrival_airport_id: arrival_airport.id
         })
     end
+    airport_finder(airport_pairs,time1,time2)
+
   end
   
   first_day = Date.today
-  last_day = today + 20
+  last_day = first_day + 20
 
   (first_day..last_day).each do |day|
-    flight_creator
+    present_time = Time.now
+    future_time = present_time + (60*60*24*20)
+    flight_generator(present_time,future_time)
   end
    
 p "created #{Flight.count} flights"
