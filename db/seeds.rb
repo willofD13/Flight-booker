@@ -39,14 +39,14 @@ Airport.delete_all
       morning = morning_time(day)
       afternoon = afternoon_time(day)
 
-      flight_creator(a1,a2,morning,afternoon)
-      flight_creator(a1,a2,morning,afternoon)
+      flight_creator(a1,a2,morning)
+      flight_creator(a1,a2,afternoon)
     end
    end
   
-   def flight_creator(departure_airport,arrival_airport,morning,afternoon)
+   def flight_creator(departure_airport,departure_time)
       Flight.create!({
-      start_datetime: Time.at((afternoon.to_f - morning.to_f)*rand + morning.to_f),
+      start_datetime: departure_time,
       duration: "#{((1..24).to_a).sample} hours",
       departure_airport_id: departure_airport.id,
       arrival_airport_id: arrival_airport.id
@@ -63,7 +63,7 @@ Airport.delete_all
 
    (today..month).each do |d|
     airport_finder(airport_pairs,d)
- end
+   end
 
    
 p "created #{Flight.count} flights"
