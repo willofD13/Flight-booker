@@ -1,13 +1,34 @@
 <h1> Flights </h1>
-<% @flights.each do |f|%>
-<ul>
-    <li><%= f.date %></li>
-    <div><%= f.time.strftime("%H:%m") %></div>
-    <div><%= f.duration %></div>
-    <div><%= f.departure_airport.code %></div>
-    <div><%= f.arrival_airport.code %></div>
-</ul>
+
+<% if @flights.size == Flight.all.size %>
+    <% @flights.each do |flight|%>
+        <ul>
+                <li><%= flight.date %></li>
+                <div><%= flight.time.strftime("%H:%m") %></div>
+                <div><%= flight.duration %></div>
+                <div><%= flight.departure_airport.code %></div>
+                <div><%= flight.arrival_airport.code %></div>
+        </ul>
+    <% end %>
+<% else %>
+    <% @flights.each do |flight|%>
+        <ul>
+                <li><%= flight.date %></li>
+                <div><%= flight.time.strftime("%H:%m") %></div>
+                <div><%= flight.duration %></div>
+                <div><%= flight.departure_airport.code %></div>
+                <div><%= flight.arrival_airport.code %></div>
+        </ul>
+        <%= form_with url: "/bookings/new", method: :get do |f|%>
+                <%= f.label :booking, "Book this flight" %>
+                <%= f.radio_button :booking, "#{flight.id}" %> 
+                <%= f.hidden_field :number_of_passengers, value: "#{flight.number_of_passengers}"%>
+                <%= f.submit "Book" %>
+        <% end %>
+    <% end %>
 <% end %>
+
+
 
 <%= form_with url: "/flights", method: :get do |f|%>
     <%= f.select :departure_airport_id, @airport_options %>
