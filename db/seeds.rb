@@ -25,15 +25,15 @@ Airport.delete_all
     }])
     p "created #{Airport.count} airports"
 
-   def flight_generator(time1,time2)
+   def flight_generator(day)
     airport_codes = Airport.all.map {|a| a.code }
     airport_pairs = airport_codes.permutation(2).to_a
 
-    def airport_finder(airports,time1,time2)
+    def airport_finder(airports,day)
       airports.each do |a|
         a1 = Airport.find_by(code: a[0])
         a2 = Airport.find_by(code: a[1])
-        time = Time.at((time2.to_f - time1.to_f)*rand + time1.to_f)
+        time = Faker::Time.between_dates(from:day, to:day, period: :all)
         date = time.to_date
 
         flight_creator(a1,a2,date,time)
@@ -49,7 +49,7 @@ Airport.delete_all
         arrival_airport_id: arrival_airport.id
         })
     end
-    airport_finder(airport_pairs,time1,time2)
+    airport_finder(airport_pairs,day)
 
   end
   
@@ -57,9 +57,7 @@ Airport.delete_all
   last_day = first_day + 20
 
   (first_day..last_day).each do |day|
-    present_time = Time.now
-    future_time = present_time + (60*60*24*20)
-    flight_generator(present_time,future_time)
+    flight_generator(day)
   end
    
 p "created #{Flight.count} flights"
