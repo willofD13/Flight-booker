@@ -1,7 +1,8 @@
 <h1> Flights </h1>
 <% @flights.each do |f|%>
 <ul>
-    <li><%= f.start_datetime.strftime('%Y-%m-%d %H:%m') %></li>
+    <li><%= f.date %></li>
+    <li><%= f.time.strftime("%H:%m") %></li>
     <div><%= f.duration %></div>
     <div><%= f.departure_airport.code %></div>
     <div><%= f.arrival_airport.code %></div>
@@ -12,6 +13,6 @@
     <%= f.select :departure_airport_id, @airport_options %>
     <%= f.select :arrival_airport_id, @airport_options %>
     <%= f.select :number_of_passengers, @number_options %>
-    <%= f.date_select :date, @date_options %>
+    <%= f.date_select :date%>
     <%= f.submit "Search" %>
 <% end %>
