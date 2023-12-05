@@ -12,6 +12,6 @@
     <%= f.select :departure_airport_id, @airport_options %>
     <%= f.select :arrival_airport_id, @airport_options %>
     <%= f.select :number_of_passengers, @number_options %>
-    <%= f.select :start_datetime, @date_options %>
+    <%= f.date_select :date, @date_options %>
     <%= f.submit "Search" %>
 <% end %>
