@@ -1,7 +1,8 @@
 <h1> Flights </h1>
 
 <% if @flights.size == Flight.all.size %>
-    <% @flights.each do |flight|%>
+    <% flights = @flights.first(5) %>
+    <% flights.each do |flight|%>
         <ul>
                 <li><%= flight.date %></li>
                 <div><%= flight.time.strftime("%H:%m") %></div>
