@@ -2,7 +2,7 @@
 
 <%= form_with model: @booking do |f|%>
     <div>
-        <%= f.hidden_field :departure_airport, value: "#{@flight.id}"%>
+        <%= f.hidden_field :flight_id, value: "#{@flight.id}"%>
     </div>
     <div>
         <strong>Departure Airport: </strong>
