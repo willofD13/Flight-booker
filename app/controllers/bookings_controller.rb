@@ -18,4 +18,8 @@ class BookingsController < ApplicationController
             redirect_to :new, status: :unprocessable_entity
         end
     end
+
+    def booking_params
+        params.require(:booking).permit(:flight_id,passengers_attributes: [:name,:email])
+    end
 end
