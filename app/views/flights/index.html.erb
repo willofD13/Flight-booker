@@ -25,6 +25,10 @@
                 <%= f.label :flight_id, "Book this flight" %>
                 <%= f.radio_button :flight_id, "#{flight.id}" %> 
                 <%= f.hidden_field :number_of_passengers, value: "#{flight.number_of_passengers}"%>
+                <%= f.hidden_field :departure_airport, value: "#{flight.departure_airport.code}"%>
+                <%= f.hidden_field :arrival_airport, value: "#{flight.arrival_airport.code}"%>
+                <%= f.hidden_field :date, value: "#{flight.date}"%>
+                <%= f.hidden_field :time, value: "#{flight.time}"%>
                 <%= f.submit "Book" %>
         <% end %>
     <% end %>
