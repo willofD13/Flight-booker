@@ -10,7 +10,7 @@ class BookingsController < ApplicationController
     end
 
     def create
-        @booking.new(booking_params)
+        @booking = Booking.new(booking_params)
 
         if @booking.save
             redirect_to flights_path
