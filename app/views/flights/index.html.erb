@@ -22,8 +22,8 @@
                 <div><strong>Number of passengers:</strong> <%= flight.number_of_passengers %></div>
         </ul>
         <%= form_with url: "/bookings/new", method: :get do |f|%>
-                <%= f.label :booking, "Book this flight" %>
-                <%= f.radio_button :booking, "#{flight.id}" %> 
+                <%= f.label :flight_id, "Book this flight" %>
+                <%= f.radio_button :flight_id, "#{flight.id}" %> 
                 <%= f.hidden_field :number_of_passengers, value: "#{flight.number_of_passengers}"%>
                 <%= f.submit "Book" %>
         <% end %>
