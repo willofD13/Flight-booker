@@ -14,12 +14,12 @@
     <% @flights.each do |flight|%>
         <% flight.number_of_passengers = params[:number_of_passengers]%>
         <ul>
-                <li><%= flight.date %></li>
-                <div><%= flight.time.strftime("%H:%m") %></div>
-                <div><%= flight.duration %></div>
-                <div><%= flight.departure_airport.code %></div>
-                <div><%= flight.arrival_airport.code %></div>
-                <div><%= flight.number_of_passengers %></div>
+                <li><strong>Date:</strong> <%=  flight.date %></li>
+                <div><strong>Departure time:</strong> <%= flight.time.strftime("%H:%m") %></div>
+                <div><strong>Flight duration:</strong> <%= flight.duration %></div>
+                <div><strong>Departure airport:</strong> <%= flight.departure_airport.code %></div>
+                <div><strong>Arrival airport:</strong> <%= flight.arrival_airport.code %></div>
+                <div><strong>Number of passengers:</strong> <%= flight.number_of_passengers %></div>
         </ul>
         <%= form_with url: "/bookings/new", method: :get do |f|%>
                 <%= f.label :booking, "Book this flight" %>
