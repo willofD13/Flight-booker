@@ -10,7 +10,7 @@ class BookingsController < ApplicationController
         @booking = Booking.new(booking_params)
 
         if @booking.save
-            redirect_to flights_path
+            redirect_to flights_path ,notice: "You successfully booked your tickets"
         else
             redirect_to :new, status: :unprocessable_entity
         end
