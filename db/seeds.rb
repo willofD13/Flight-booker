@@ -5,8 +5,7 @@
 # Example:
 #
 require 'date'
-Flight.delete_all
-Airport.delete_all
+Airport.destroy_all
 
      Airport.create!([{
       code: "AHN"
@@ -33,10 +32,12 @@ Airport.delete_all
       airports.each do |a|
         a1 = Airport.find_by(code: a[0])
         a2 = Airport.find_by(code: a[1])
-        time = Faker::Time.between_dates(from:day, to:day, period: :all)
-        date = time.to_date
+        time1 = Faker::Time.between_dates(from:day, to:day, period: :morning)
+        time2 = Faker::Time.between_dates(from:day, to:day, period: :afternoon)
+        date = time1.to_date
 
-        flight_creator(a1,a2,date,time)
+        flight_creator(a1,a2,date,time1)
+        flight_creator(a1,a2,date,time2)
       end
     end
     
