@@ -6,12 +6,16 @@ class BookingsController < ApplicationController
         @flight.number_of_passengers.times { @booking.passengers.build }
     end
 
+    def show
+        @booking = Booking.find(params[:id])
+    end
+
     def create
         @flight = Flight.find( params[:booking][:flight_id] )
         @booking = @flight.bookings.build(booking_params)
 
         if @booking.save
-            redirect_to flights_path ,notice: "You successfully booked your tickets"
+            redirect_to booking_path(@booking) ,notice: "You successfully booked your tickets"
         else
             redirect_to :new, status: :unprocessable_entity
         end
