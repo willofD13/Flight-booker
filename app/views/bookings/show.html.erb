@@ -1,0 +1,33 @@
+<h1> Here is your info </h1>
+
+<h2> Booking information </h2>
+    <div>
+        <strong>Departure Airport: </strong>
+        <%= @booking.flight.departure_airport.code %>
+    </div>
+    <div>
+        <strong>Arrival Airport: </strong>
+        <%= @booking.flight.arrival_airport.code %>
+    </div>
+    <div>
+        <strong>Departure date: </strong>
+        <%= @booking.flight.date %>
+    </div>
+    <div>
+        <strong>Departure time: </strong>
+        <%= @booking.flight.time.strftime("%H:%m") %>
+    </div>
+    <div>
+        <strong>Flight duration: </strong>
+        <%= @booking.flight.duration %>
+    </div><br>
+
+<h2> Passengers information </h2>
+    <% @booking.passengers.each do |p|%>
+        <div><strong>Name: </strong>
+        <%= p.name %></div>
+        <div><strong>Email: </strong>
+        <%= p.email %></div><br>
+    <% end %>
+
+<%= link_to  "Back to home page", flights_path%>
