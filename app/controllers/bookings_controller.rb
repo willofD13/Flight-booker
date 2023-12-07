@@ -7,7 +7,8 @@ class BookingsController < ApplicationController
     end
 
     def create
-        @booking = Booking.new(booking_params)
+        @flight = Flight.find( params[:booking][:flight_id] )
+        @booking = @flight.bookings.build(booking_params)
 
         if @booking.save
             redirect_to flights_path ,notice: "You successfully booked your tickets"
