@@ -36,5 +36,7 @@
         <div><%= passengers_form.label :email %>
         <%= passengers_form.email_field :email%></div><br>
     <% end %>
+
+    <button data-action="passengers#changeNumber"> Add passenger </button>
     <%= f.submit "Book"%>
 <% end %>
