@@ -11,6 +11,6 @@ export default class extends Controller {
 
     deleteForm() {
         let field = document.querySelector(".fields")
-        this.formTarget.removeChild(field)
+        field.remove()
     }
 }
