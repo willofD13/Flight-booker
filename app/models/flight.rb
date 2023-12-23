@@ -4,6 +4,10 @@ class Flight < ApplicationRecord
     belongs_to :arrival_airport, class_name: "Airport"
     has_many :bookings, dependent: :destroy
 
+    def as_json(_options={})
+        { :id => self.id }
+    end 
+
     def self.search(param1,param2,param3)
         if param1
             self.where(departure_airport_id: param1, arrival_airport_id: param2, date: param3)
