@@ -9,4 +9,8 @@ export default class extends Controller {
         this.formTarget.appendChild(clone)
     }
 
+    deleteForm() {
+        let field = document.querySelector(".fields")
+        this.formTarget.removeChild(field)
+    }
 }
