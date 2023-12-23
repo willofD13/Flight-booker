@@ -1,4 +1,15 @@
 class BookingsController < ApplicationController
+
+    
+    def index
+        @bookings = Booking.all
+
+        respond_to do |format|
+            format.html
+            format.json { render :json => @bookings }
+        end
+    end
+
     def new
         @booking = Booking.new
         @flight = Flight.find_by(id: params[:flight_id])
@@ -21,7 +32,11 @@ class BookingsController < ApplicationController
         end
     end
 
+    
+
     def booking_params
         params.require(:booking).permit(:flight_id,passengers_attributes: [:name,:email])
     end
+
+
 end
