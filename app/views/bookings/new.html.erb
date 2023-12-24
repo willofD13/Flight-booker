@@ -42,6 +42,8 @@
     <% end %>
 
 
+    <button type="button" data-action="nested-form#add">Add todo</button>
+    
     <div data-controller="passengers" data-passengers-number-value="<%= @flight.number_of_passengers%>">
         <div data-passengers-target="form"></div>
         <button type="button" data-action="passengers#renderForm"> Add passenger </button>
