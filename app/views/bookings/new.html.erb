@@ -30,7 +30,7 @@
     </div><br>
 
     <%= f.fields_for :passengers do |passengers_form|%>
-        <div class='fields'><%= passengers_form.label :name %>
+        <div><%= passengers_form.label :name %>
         <%= passengers_form.text_field :name%>
 
         <%= passengers_form.label :email %>
@@ -38,20 +38,21 @@
         </div>
     <% end %>
 
-    <div data-controller="passengers" >
+
+    <div data-controller="passengers" data-passengers-number-value="<%= @flight.number_of_passengers%>">
         <div data-passengers-target="form"></div>
         <button type="button" data-action="passengers#renderForm"> Add passenger </button>
         <button type="button" data-action="passengers#deleteForm"> Remove passenger </button>
         <template data-passengers-target="template">
-            <%= f.fields_for :passengers do |passengers_form|%>
-                <div class='fields'>
+            <div class='fields'>
+                <%= f.fields_for :passengers do |passengers_form|%>
                     <%= passengers_form.label :name %>
                     <%= passengers_form.text_field :name%>
 
                     <%= passengers_form.label :email %>
                     <%= passengers_form.email_field :email%>
-                </div>
-            <% end %>
+                <% end %>
+            </div>
         </template>
     </div>
     
