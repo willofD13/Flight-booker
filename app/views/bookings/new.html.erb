@@ -4,6 +4,15 @@
     controller: "nested-form",
     nested_form_wrapper_selector_value: '.nested-form-wrapper'
     } do |f|%>
+    <template data-nested-form-target="template">
+                <%= f.fields_for :passengers, Passenger.new, child_index: 'NEW RECORD' do |passengers_form|%>
+                    <%= passengers_form.label :name %>
+                    <%= passengers_form.text_field :name%>
+
+                    <%= passengers_form.label :email %>
+                    <%= passengers_form.email_field :email%>
+                <% end %>
+        </template>
     <div>
         <%= f.hidden_field :flight_id, value: "#{@flight.id}"%>
     </div>
