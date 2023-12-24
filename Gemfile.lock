@@ -195,6 +195,8 @@ GEM
     reline (0.4.1)
       io-console (~> 0.5)
     rexml (3.2.6)
+    rondo_form (0.2.3)
+      railties (>= 6.0)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
     selenium-webdriver (4.15.0)
@@ -246,6 +248,7 @@ DEPENDENCIES
   jbuilder
   puma (>= 5.0)
   rails (~> 7.1.2)
+  rondo_form (~> 0.2.3)
   selenium-webdriver
   sprockets-rails
   sqlite3 (~> 1.4)
