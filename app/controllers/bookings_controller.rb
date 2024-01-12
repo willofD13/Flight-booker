@@ -32,7 +32,7 @@ class BookingsController < ApplicationController
 
             redirect_to booking_path(@booking) ,notice: "You successfully booked your tickets"
         else
-            redirect_to :new, status: :unprocessable_entity
+            render :new, status: :unprocessable_entity
         end
     end
 
