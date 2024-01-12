@@ -3,6 +3,6 @@ class PassengerMailer < ApplicationMailer
 
   def welcome_email
     @passenger = params[:passenger]
-    mail(to: @passenger.email, subject: 'Welcome to My Awesome Site')
+    mail(to: @passenger.email, subject: 'You have successfully booked your tickets!')
   end
 end
