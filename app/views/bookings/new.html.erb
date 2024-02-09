@@ -37,15 +37,5 @@
         <%= passengers_form.email_field :email%></div><br>
     <% end %>
 
-    <div>
-        <%= f.fields_for :passengers do |passengers_form|%>
-        <div><%= passengers_form.label :name %>
-        <%= passengers_form.text_field :name%></div>
-
-        <div><%= passengers_form.label :email %>
-        <%= passengers_form.email_field :email%></div><br>
-        <% end %>
-    </div>
-    
     <%= f.submit "Book"%>
 <% end %>
